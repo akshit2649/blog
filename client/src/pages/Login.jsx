@@ -16,10 +16,11 @@ const Login = () => {
   };
 
   const handleSubmit = async e => {
+    // e.preventDefault();
     e.preventDefault();
     try {
-      const res = await axios.post('/auth/register', inputs);
-      navigate('/login');
+      const res = await axios.post('/auth/login', inputs);
+      navigate('/');
     } catch (error) {
       setError(error.response.data);
     }
@@ -28,8 +29,20 @@ const Login = () => {
     <div className="auth ww">
       <h1>Login</h1>
       <form>
-        <input required type="text" placeholder="usename" name="username" />
-        <input required type="password" placeholder="password" name="password" />
+        <input
+          required
+          type="text"
+          placeholder="usename"
+          name="username"
+          onChange={handleChange}
+        />
+        <input
+          required
+          type="password"
+          placeholder="password"
+          name="password"
+          onChange={handleChange}
+        />
         <button onClick={handleSubmit}>Login</button>
         {error && <p>{error}</p>}
         <span>
