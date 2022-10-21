@@ -55,21 +55,29 @@ const Home = () => {
     <div className="home">
       {' '}
       <div className="posts">
-        {posts.map(post => (
-          <div className="post" key={post.id}>
-            <div className="img">
-              {/* <img src={post.img} alt="" /> */}
-              <img src={`../upload/${post.img}`} alt="" />
+        {posts.map(post => {
+          let imgUrl = `../upload/${post.img}`;
+          if (post.img.includes('http')) imgUrl = post.img;
+
+          return (
+            <div className="post" key={post.id}>
+              <div className="img">
+                {/* <img src={post.img} alt="" /> */}
+                {/* <img src={`../upload/${post.img}`} alt="" /> */}
+                <img src={imgUrl} alt="" />
+              </div>
+              <div className="content">
+                <Link className="link" to={`/post/${post.id}`}>
+                  <h1>{post.title}</h1>
+                </Link>
+                <p>{getText(post.desc)}</p>
+                <Link to={`/post/${post.id}`}>
+                  <button>Read More</button>
+                </Link>
+              </div>
             </div>
-            <div className="content">
-              <Link className="link" to={`/post/${post.id}`}>
-                <h1>{post.title}</h1>
-              </Link>
-              <p>{getText(post.desc)}</p>
-              <button>Read More</button>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

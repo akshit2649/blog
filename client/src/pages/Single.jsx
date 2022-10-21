@@ -41,11 +41,15 @@ const Single = () => {
     return doc.body.textContent;
   };
 
+  let imgUrl = `../upload/${post.img}`;
+  if (post?.img?.includes('http')) imgUrl = post.img;
+
   return (
     <div className="single">
       <div className="content">
         {/* <img src={post?.img} alt="" /> */}
-        <img src={`../upload/${post?.img}`} alt="" />
+        {/* <img src={`../upload/${post?.img}`} alt="" /> */}
+        <img src={imgUrl} alt="" />
         <div className="user">
           {post.userImg && <img src={post.userImg} alt="" />}
           <div className="info">
